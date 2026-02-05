@@ -1,0 +1,143 @@
+{
+  "foundQueryLogs": {
+    "events": [
+      {
+        "timestamp": 1705420800000,
+        "log_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+        "message": {
+          "source_ip": "192.168.1.100",
+          "destination_ip": "10.0.0.50",
+          "source_port": 54321,
+          "destination_port": 443,
+          "protocol": "HTTPS",
+          "user": "john.doe@example.com",
+          "action": "allowed",
+          "bytes_sent": 4096,
+          "bytes_received": 8192,
+          "source_asset": "WORKSTATION-01",
+          "destination_asset": "WEB-SERVER-01"
+        },
+        "labels": [],
+        "sequence_number": 1234567890
+      },
+      {
+        "timestamp": 1705420700000,
+        "log_id": "b2c3d4e5-f6a7-8901-bcde-f12345678901",
+        "message": {
+          "source_ip": "192.168.1.100",
+          "destination_ip": "203.0.113.45",
+          "source_port": 49152,
+          "destination_port": 80,
+          "protocol": "HTTP",
+          "user": "john.doe@example.com",
+          "action": "blocked",
+          "threat_detected": true,
+          "threat_type": "malware",
+          "source_asset": "WORKSTATION-01"
+        },
+        "labels": ["suspicious"],
+        "sequence_number": 1234567889
+      }
+    ],
+    "statistics": {
+      "stats": {
+        "source_ip": {
+          "count": 127
+        }
+      },
+      "groups": [
+        {
+          "[WORKSTATION-01, 443]": {
+            "count": 45
+          }
+        },
+        {
+          "[WORKSTATION-02, 443]": {
+            "count": 38
+          }
+        },
+        {
+          "[WORKSTATION-01, 80]": {
+            "count": 23
+          }
+        }
+      ],
+      "granularity": 3600000,
+      "from": 1705334400000,
+      "to": 1705420800000,
+      "stats_by_time": []
+    },
+    "formattedGroupStats": [
+      {
+        "groupings": [
+          {
+            "groupByField": "source_asset",
+            "groupByValue": "WORKSTATION-01"
+          },
+          {
+            "groupByField": "destination_port",
+            "groupByValue": "443"
+          }
+        ],
+        "stat": {
+          "statType": "count",
+          "statValue": 45
+        }
+      },
+      {
+        "groupings": [
+          {
+            "groupByField": "source_asset",
+            "groupByValue": "WORKSTATION-02"
+          },
+          {
+            "groupByField": "destination_port",
+            "groupByValue": "443"
+          }
+        ],
+        "stat": {
+          "statType": "count",
+          "statValue": 38
+        }
+      }
+    ],
+    "query": "where(192.168.1.100) groupby(source_asset, destination_port)",
+    "groupBy": ["source_asset", "destination_port"],
+    "link": "https://us.idr.insight.rapid7.com/op/ABC123#/search?logs=%5B%22abc-def-123%22%5D&query=where%28192.168.1.100%29%20groupby%28source_asset%2C%20destination_port%29&range=last%2024%20hours"
+  },
+  "foundInvestigations": [
+    {
+      "id": "inv-12345",
+      "title": "Suspicious outbound connection from WORKSTATION-01",
+      "status": "OPEN",
+      "priority": "CRITICAL",
+      "assignee": {
+        "name": "Security Analyst",
+        "email": "analyst@example.com"
+      },
+      "created_time": "2024-01-16T12:00:00Z",
+      "last_updated": "2024-01-16T14:30:00Z",
+      "threat_command_alert_count": 3,
+      "rrn": "rrn:investigation:us:01234567-89ab-cdef-0123-456789abcdef:investigation:inv-12345"
+    }
+  ],
+  "threats": [
+    {
+      "name": "Malicious Domain Access",
+      "indicator_count": 15,
+      "published": true
+    }
+  ],
+  "users": [
+    {
+      "email": "john.doe@example.com",
+      "first_name": "John",
+      "last_name": "Doe"
+    },
+    {
+      "email": "analyst@example.com",
+      "first_name": "Security",
+      "last_name": "Analyst"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "root": {
+    "path": "",
+    "on_null": "return_empty"
+  },
+  "pipeline": [
+    {
+      "op": "copy",
+      "from": "foundQueryLogs.events",
+      "to": "reduced_results.logs"
+    },
+    {
+      "op": "copy",
+      "from": "foundQueryLogs.statistics",
+      "to": "reduced_results.statistics"
+    },
+    {
+      "op": "copy",
+      "from": "foundQueryLogs.statistics.stats",
+      "to": "reduced_results.stats"
+    },
+    {
+      "op": "prune",
+      "strategy": "empty_values",
+      "target": "reduced_results"
+    }
+  ],
+  "output": {
+    "result": "$working.reduced_results"
+  }
+}

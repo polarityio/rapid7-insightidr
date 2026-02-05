@@ -6,7 +6,16 @@
   "styles": [
     "./styles/styles.less"
   ],
-  "entityTypes": ["IPv4", "IPv6", "email", "domain", "url", "MD5", "SHA1", "SHA256"],
+  "entityTypes": [
+    "IPv4",
+    "IPv6",
+    "email",
+    "domain",
+    "url",
+    "MD5",
+    "SHA1",
+    "SHA256"
+  ],
   "defaultColor": "light-purple",
   "block": {
     "component": {
@@ -153,5 +162,10 @@
       "userCanEdit": false,
       "adminOnly": true
     }
-  ]
+  ],
+  "reducer": {
+    "details": {
+      "file": "./reducers/details.json"
+    }
+  }
 }
